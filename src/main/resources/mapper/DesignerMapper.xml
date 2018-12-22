@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ivy.root.dao.DesignerMapper" >
+  <resultMap id="BaseResultMap" type="com.ivy.root.domain.Designer" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="brief" property="brief" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="TINYINT" />
+    <result column="register_time" property="registerTime" jdbcType="TIMESTAMP" />
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, brief, gender, register_time, pic_url, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_designer
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_designer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ivy.root.domain.Designer" >
+    insert into t_designer (id, name, brief, 
+      gender, register_time, pic_url, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{brief,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=TINYINT}, #{registerTime,jdbcType=TIMESTAMP}, #{picUrl,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ivy.root.domain.Designer" >
+    insert into t_designer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="brief != null" >
+        brief,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="registerTime != null" >
+        register_time,
+      </if>
+      <if test="picUrl != null" >
+        pic_url,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="brief != null" >
+        #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="registerTime != null" >
+        #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picUrl != null" >
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ivy.root.domain.Designer" >
+    update t_designer
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="brief != null" >
+        brief = #{brief,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="registerTime != null" >
+        register_time = #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picUrl != null" >
+        pic_url = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ivy.root.domain.Designer" >
+    update t_designer
+    set name = #{name,jdbcType=VARCHAR},
+      brief = #{brief,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=TINYINT},
+      register_time = #{registerTime,jdbcType=TIMESTAMP},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

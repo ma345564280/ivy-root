@@ -1,0 +1,7 @@
+select c.province, c.cityname, d.cityname as county from (
+select a.cityname as province, b.cityname as cityname, b.id as id
+from
+	(select * from t_city where type = 1) a left join t_city b on a.id = b.pid) c left join t_city d on c.id = d.pid;
+
+
+select * from t_city where cityname = '临高县'

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ivy.root.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.ivy.root.domain.Order" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="designer_id" property="designerId" jdbcType="BIGINT" />
+    <result column="order_status" property="orderStatus" jdbcType="TINYINT" />
+    <result column="order_house_detail_id" property="orderHouseDetailId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="TINYINT" />
+    <result column="order_type" property="orderType" jdbcType="TINYINT" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, customer_id, order_status, order_house_detail_id, create_time, update_time, del_flag,
+    order_type, note
+  </sql>
+
+  <select id="counterAllOrders" resultType="java.lang.Long">
+    select count(*)
+    from t_order
+    where del_flag = 0
+    and designer_id =#{designerId};
+  </select>
+
+  <select id="statisticOrdersByDay" resultMap="BaseResultMap">
+    select *
+    from t_order
+    where del_flag = 0
+    and designer_id = #{designerId}
+    and DATE_SUB(CURDATE(), INTERVAL #{days} DAY) &lt;= create_time
+    order by create_time desc
+  </select>
+</mapper>
