@@ -5,7 +5,7 @@
 
     <groupId>boya</groupId>
     <artifactId>ivy-root</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <name>ivy-root</name>
@@ -157,6 +157,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
     </dependencies>
 
     <build>

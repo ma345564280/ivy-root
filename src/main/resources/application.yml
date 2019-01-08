@@ -68,7 +68,7 @@ img:
   location: D:\upload
   proportion: 0.2f
 
-  logging:
-    path: D:\dev_soft\idea_log\ivy-root\log
-    level:
-      com.ivy.root: debug
+logging:
+  path: D:\dev_soft\idea_log\ivy-root\log
+  level:
+    com.ivy.root: debug

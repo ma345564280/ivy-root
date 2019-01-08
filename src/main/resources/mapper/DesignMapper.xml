@@ -32,4 +32,13 @@
     values
       (#{designerId}, #{name}, #{brief}, #{type}, #{createTime})
   </insert>
+
+  <select id="queryDesignForShare" parameterType="map" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from t_design
+    where del_flag = 0 and
+    <if test="userId != null">
+      designer_id = #{userId}
+    </if>
+  </select>
+
 </mapper>

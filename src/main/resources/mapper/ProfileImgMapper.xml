@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ivy.root.dao.ProfileImgMapper" >
+  <resultMap id="BaseResultMap" type="com.ivy.root.domain.ProfileImg" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="profile_id" property="profileId" jdbcType="BIGINT" />
+    <result column="img_type" property="imgType" jdbcType="TINYINT" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, profile_id, img_type, img_url, del_flag, create_time, update_time, description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_profile_img
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_profile_img
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ivy.root.domain.ProfileImg" >
+    insert into t_profile_img (id, user_id, img_type, 
+      img_url, del_flag, create_time, 
+      update_time, description, profile_id)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{imgType,jdbcType=TINYINT}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, #{profileId})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ivy.root.domain.ProfileImg" >
+    insert into t_profile_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="imgType != null" >
+        img_type,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="profileId != null" >
+        profile_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="imgType != null" >
+        #{imgType,jdbcType=TINYINT},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="profileId != null" >
+        #{profileId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ivy.root.domain.ProfileImg" >
+    update t_profile_img
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="imgType != null" >
+        img_type = #{imgType,jdbcType=TINYINT},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="profileId != null" >
+        profileId = #{profileId},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ivy.root.domain.ProfileImg" >
+    update t_profile_img
+    set user_id = #{userId,jdbcType=BIGINT},
+      img_type = #{imgType,jdbcType=TINYINT},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      profile_id = #{profileId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <insert id="batchInsertProfileImgs" parameterType="com.ivy.root.domain.ProfileImg">
+    insert into t_profile_img (user_id, img_url, img_type, create_time, profile_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.userId}, #{item.imgUrl}, #{item.imgType}, #{item.createTime}, #{item.profileId})
+    </foreach>
+  </insert>
+
+  <select id="queryProfileImgsForShare" parameterType="map" resultMap="BaseResultMap">
+    select * from t_profile_img
+    where del_flag = 0
+      and profile_id = #{profileId}
+      and user_id = #{userId}
+  </select>
+</mapper>

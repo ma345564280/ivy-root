@@ -19,4 +19,14 @@
      (#{item.designId}, #{item.imgUrl}, #{item.imgType}, #{item.createTime})
    </foreach>
  </insert>
+    
+  <select id="queryDesignImgsByConditions" parameterType="map" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List"/>
+      from t_design_img
+      where del_flag = 0 and
+      design_id IN
+      <foreach collection="designIds" item="designId" open="(" separator="," close=")">
+          #{designId}
+      </foreach>
+  </select>
 </mapper>
