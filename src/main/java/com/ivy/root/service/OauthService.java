@@ -1,4 +1,4 @@
-package com.ivy.root.Service;
+package com.ivy.root.service;
 
 public interface OauthService {
 }

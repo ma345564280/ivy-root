@@ -1,7 +1,16 @@
 package com.ivy.root.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.Date;
+
+@Getter
+@Setter
 public class User {
     private Long id;
+
+    private Byte accountStatus;
 
     private String userName;
 
@@ -9,7 +18,7 @@ public class User {
 
     private String mobile;
 
-    private Byte gender;
+    private Integer gender;
 
     private String picUrl;
 
@@ -19,75 +28,14 @@ public class User {
 
     private String address;
 
-    public Long getId() {
-        return id;
-    }
+    private Byte delFlag;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private Date createTime;
 
-    public String getUserName() {
-        return userName;
-    }
+    private Date updateTime;
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
-    }
+    private String openId;
 
-    public String getPassword() {
-        return password;
-    }
+    private String email;
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
-    }
-
-    public Byte getGender() {
-        return gender;
-    }
-
-    public void setGender(Byte gender) {
-        this.gender = gender;
-    }
-
-    public String getPicUrl() {
-        return picUrl;
-    }
-
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl == null ? null : picUrl.trim();
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Integer getRole() {
-        return role;
-    }
-
-    public void setRole(Integer role) {
-        this.role = role;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
 }

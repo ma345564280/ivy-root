@@ -57,3 +57,14 @@ stats/arrow-up.gif
 stats/arrow-none.gif
 stats/arrow-down.gif
 stats/activity.html
+target/classes/com/ivy/root/domain/Design.class
+target/classes/com/ivy/root/dao/DesignMapper.class
+target/classes/com/ivy/root/dao/DesignImgMapper.class
+target/classes/mapper/DesignImgMapper.xml
+target/classes/generator/generatorConfig.xml
+target/classes/com/ivy/root/domain/DesignImg.class
+target/classes/mapper/DesignMapper.xml
+target/classes/com/ivy/root/common/request/SaveDesignRequest.class
+target/classes/com/ivy/root/common/request/RegisterRequest.class
+target/classes/application.yml
+target/classes/com/ivy/root/dto/CropImage.class

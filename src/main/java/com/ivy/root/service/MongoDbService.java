@@ -1,5 +1,6 @@
-package com.ivy.root.Service;
+package com.ivy.root.service;
 
+import com.ivy.root.dto.CropImage;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,4 +14,6 @@ public interface MongoDbService {
     void removeFile(String fileId);
 
     void getPicture(String fileId, HttpServletResponse response, float v) throws IOException;
+
+    String saveCropPicture(CropImage request) throws IOException;
 }

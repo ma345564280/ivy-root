@@ -1,6 +1,6 @@
-package com.ivy.root.Service.ServiceImp;
+package com.ivy.root.service.impl;
 
-import com.ivy.root.Service.ApiService;
+import com.ivy.root.service.ApiService;
 import com.ivy.root.common.request.ShareInfoRequest;
 import com.ivy.root.common.rootenum.DesignPictureTypeEnum;
 import com.ivy.root.common.rootenum.ProfilePictureTypeEnum;

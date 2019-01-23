@@ -1,13 +1,16 @@
-package com.ivy.root.Service.ServiceImp;
+package com.ivy.root.service.impl;
 
-import com.ivy.root.Service.UserService;
+import com.ivy.root.service.UserService;
 import com.ivy.root.common.request.LoginRequest;
+import com.ivy.root.common.request.RegisterRequest;
 import com.ivy.root.dao.UserMapper;
 import com.ivy.root.domain.User;
 import com.ivy.root.domain.UserAuthority;
 import com.ivy.root.dto.UserRoleDto;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,5 +46,14 @@ public class UserServiceImpl implements UserService {
         paramMap.put("roleIds", roleIds);
         List<UserAuthority> userRoles = userMapper.queryAuthoritiesByCondition(paramMap);
         return userRoles;
+    }
+
+    @Override
+    @Transactional
+    public boolean register(RegisterRequest param) {
+        User user = new User();
+        BeanUtils.copyProperties(param, user);
+        int count = userMapper.insertSelective(user);
+        return true;
     }
 }

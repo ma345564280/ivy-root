@@ -1,6 +1,6 @@
-package com.ivy.root.Service.ServiceImp;
+package com.ivy.root.service.impl;
 
-import com.ivy.root.Service.OrderService;
+import com.ivy.root.service.OrderService;
 import com.ivy.root.dao.OrderMapper;
 import com.ivy.root.domain.Order;
 import com.ivy.root.vo.DaySumStatisticVo;

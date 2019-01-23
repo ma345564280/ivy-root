@@ -1,7 +1,8 @@
 package com.ivy.root.controller;
 
-import com.ivy.root.Service.UserService;
+import com.ivy.root.service.UserService;
 import com.ivy.root.common.request.LoginRequest;
+import com.ivy.root.common.request.RegisterRequest;
 import com.ivy.root.common.response.ResponseVo;
 import com.ivy.root.common.rootenum.ResponseCodeEnum;
 import com.ivy.root.domain.User;
@@ -11,6 +12,7 @@ import com.ivy.root.dto.UserRoleDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,4 +51,29 @@ public class UserController {
         }
         return ResponseVo.buildSuccessInstance(new UserAuthorityDto(user.getId(), user.getUserName(), authorities));
     }
+
+    @ApiOperation(value = "用户注册")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseVo<String> register(@RequestBody RegisterRequest param) {
+        if(!validateRegisterInfo(param)) {
+            return ResponseVo.buildFailInstance(ResponseCodeEnum.WRONG_OR_EMPTY_PARAM);
+        }
+
+
+
+        boolean ret = userService.register(param);
+
+        return null;
+    }
+
+    private boolean validateRegisterInfo(RegisterRequest param) {
+        if(param == null) return false;
+
+        if(StringUtils.isEmpty(param.getUserName()) || StringUtils.isEmpty(param.getPassword())) return false;
+
+
+//        if(param.getEmail())
+        return true;
+    }
+
 }

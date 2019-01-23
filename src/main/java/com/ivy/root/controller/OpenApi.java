@@ -1,13 +1,10 @@
 package com.ivy.root.controller;
 
-import com.ivy.root.Service.ApiService;
-import com.ivy.root.Service.DesignService;
+import com.ivy.root.service.ApiService;
 import com.ivy.root.common.exception.BusinessException;
-import com.ivy.root.common.request.SaveDesignRequest;
 import com.ivy.root.common.request.ShareInfoRequest;
 import com.ivy.root.common.response.ResponseVo;
 import com.ivy.root.common.rootenum.ResponseCodeEnum;
-import com.ivy.root.domain.Profile;
 import com.ivy.root.vo.ShareInfoVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

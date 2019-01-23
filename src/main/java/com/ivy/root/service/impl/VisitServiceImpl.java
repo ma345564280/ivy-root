@@ -1,6 +1,6 @@
-package com.ivy.root.Service.ServiceImp;
+package com.ivy.root.service.impl;
 
-import com.ivy.root.Service.VisitService;
+import com.ivy.root.service.VisitService;
 import com.ivy.root.dao.VisitMapper;
 import com.ivy.root.domain.Visit;
 import com.ivy.root.vo.DaySumStatisticVo;

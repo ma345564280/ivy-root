@@ -1,13 +1,17 @@
-package com.ivy.root.Service.ServiceImp;
+package com.ivy.root.service.impl;
 
-import com.ivy.root.Service.MongoDbService;
+import com.ivy.root.service.MongoDbService;
 import com.ivy.root.common.exception.BusinessException;
 import com.ivy.root.common.rootenum.ResponseCodeEnum;
+import com.ivy.root.controller.DesignsController;
+import com.ivy.root.dto.CropImage;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
 import net.coobird.thumbnailator.Thumbnails;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -18,11 +22,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +34,7 @@ import java.util.Map;
 @Service
 public class MongoDbServiceImp implements MongoDbService {
     private static Map<String, String> imageContentType = new HashMap<>();
-
+    private static final Logger logger = LoggerFactory.getLogger(DesignsController.class);
     static {
         imageContentType.put("jpg", "image/jpeg");
         imageContentType.put("jpeg", "image/jpeg");
@@ -110,6 +113,19 @@ public class MongoDbServiceImp implements MongoDbService {
             out.flush();
             out.close();
         }
+    }
+
+    @Override
+    public String saveCropPicture(CropImage request) throws IOException {
+        if (request.getFile() == null) //图像数据为空
+            return null;
+        int index = request.getFile().indexOf("base64,");
+        byte[] bytes = new BASE64Decoder().decodeBuffer(request.getFile().substring(index + 7));
+        //转化为输入流
+        ByteArrayInputStream ins = new ByteArrayInputStream(bytes);
+        ObjectId gridFSFile = gridFsTemplate.store(ins, request.getFileName(), request.getSuffix());
+        logger.debug(gridFSFile.toString());
+        return gridFSFile.toString();
     }
 
 }

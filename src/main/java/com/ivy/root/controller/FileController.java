@@ -1,15 +1,13 @@
 package com.ivy.root.controller;
 
-import com.ivy.root.Service.MongoDbService;
+import com.ivy.root.service.MongoDbService;
 import com.ivy.root.common.response.ResponseVo;
+import com.ivy.root.dto.CropImage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
@@ -48,8 +46,18 @@ public class FileController {
     @ApiOperation(value = "下载压缩图片")
     public void downloadCompressPicture(@RequestParam String fileId, HttpServletResponse response) throws IOException {
 
-        //http://localhost/ivy-root/file/design/downloadCompressPicture?fileId=5c0be02ee9a26864fc133d3f
+        //http://localhost/ivy-root/file/design/downloadCompressPicture?fileId=5c4429ed4b349d381cbe8976
         mongoDbService.getPicture(fileId, response, Float.parseFloat(compressProportion));
     }
+
+    @RequestMapping(value = "/uploadCropPicture", method = RequestMethod.POST)
+    @ApiOperation(value = "上传文件")
+    public ResponseVo<String> uploadCropPicture(@RequestBody CropImage request) throws IOException {
+
+
+        return ResponseVo.buildSuccessInstance( mongoDbService.saveCropPicture(request));
+//        return ResponseVo.buildSuccessInstance(mongoDbService.savePicture(request));
+    }
+
 
 }

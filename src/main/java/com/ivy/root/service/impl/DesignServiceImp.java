@@ -1,8 +1,8 @@
-package com.ivy.root.Service.ServiceImp;
+package com.ivy.root.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.ivy.root.Service.DesignService;
+import com.ivy.root.service.DesignService;
 import com.ivy.root.common.exception.BusinessException;
 import com.ivy.root.common.request.DesignsParamRequest;
 import com.ivy.root.common.request.SaveDesignRequest;

@@ -1,6 +1,7 @@
-package com.ivy.root.Service;
+package com.ivy.root.service;
 
 import com.ivy.root.common.request.LoginRequest;
+import com.ivy.root.common.request.RegisterRequest;
 import com.ivy.root.domain.User;
 import com.ivy.root.domain.UserAuthority;
 import com.ivy.root.dto.UserRoleDto;
@@ -14,4 +15,6 @@ public interface UserService {
     List<UserRoleDto> queryUserRole(User param);
 
     List<UserAuthority> queryAuthoritiesByCondition(List<UserRoleDto> userRoleDtos);
+
+    boolean register(RegisterRequest param);
 }

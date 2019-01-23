@@ -1,6 +1,6 @@
-package com.ivy.root.Service.ServiceImp;
+package com.ivy.root.service.impl;
 
-import com.ivy.root.Service.OauthService;
+import com.ivy.root.service.OauthService;
 import org.springframework.stereotype.Service;
 
 @Service

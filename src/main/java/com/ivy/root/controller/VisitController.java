@@ -1,7 +1,7 @@
 package com.ivy.root.controller;
 
 
-import com.ivy.root.Service.VisitService;
+import com.ivy.root.service.VisitService;
 import com.ivy.root.common.response.ResponseVo;
 import com.ivy.root.vo.StatisticVo;
 import io.swagger.annotations.Api;
