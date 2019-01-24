@@ -30,7 +30,7 @@ public class DesignsController {
     public ResponseVo<PageInfo> queryDesigns(@RequestBody DesignsParamRequest param) {
         PageInfo pageInfo = designService.queryDesigns(param);
         logger.debug("Designs : " + JSON.toJSONString(pageInfo));
-        return new ResponseVo<PageInfo>().buildSuccessInstance(pageInfo);
+        return ResponseVo.buildSuccessInstance(pageInfo);
     }
 
     @ApiOperation(value = "查询作品列表",notes = "分页-条件")

@@ -34,13 +34,19 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseVo<UserAuthorityDto> login(@RequestBody LoginRequest param) {
         if(param == null || param.getUserName() == null || param.getPassword() == null)
+        {
             return  ResponseVo.buildFailInstance(ResponseCodeEnum.WRONG_OR_EMPTY_PARAM);
+        }
 
         User user = userService.getOneUserByCondition(param);
-        if(user == null) return ResponseVo.buildFailInstance(ResponseCodeEnum.WRONG_ACCOUNT_INFO);
+        if(user == null) {
+            return ResponseVo.buildFailInstance(ResponseCodeEnum.WRONG_ACCOUNT_INFO);
+        }
 
         List<UserRoleDto> userRoleDtos = userService.queryUserRole(user);
-        if(userRoleDtos == null || userRoleDtos.size() == 0) return ResponseVo.buildFailInstance(ResponseCodeEnum.ILLEGAL_ACCOUNT);
+        if(userRoleDtos == null || userRoleDtos.size() == 0) {
+            return ResponseVo.buildFailInstance(ResponseCodeEnum.ILLEGAL_ACCOUNT);
+        }
 
         List<UserAuthority> userAuthorities = userService.queryAuthoritiesByCondition(userRoleDtos);
         List<String> authorities;
@@ -67,9 +73,13 @@ public class UserController {
     }
 
     private boolean validateRegisterInfo(RegisterRequest param) {
-        if(param == null) return false;
+        if(param == null) {
+            return false;
+        }
 
-        if(StringUtils.isEmpty(param.getUserName()) || StringUtils.isEmpty(param.getPassword())) return false;
+        if(StringUtils.isEmpty(param.getUserName()) || StringUtils.isEmpty(param.getPassword())) {
+            return false;
+        }
 
 
 //        if(param.getEmail())

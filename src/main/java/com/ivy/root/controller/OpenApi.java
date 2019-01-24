@@ -26,7 +26,9 @@ public class OpenApi {
     @RequestMapping(value = "/getShareInfo", method = RequestMethod.POST)
     public ResponseVo<ShareInfoVo> getShareInfo(@RequestBody ShareInfoRequest param) {
         if(param == null || param.getUserId() == null)
+        {
             throw new BusinessException(ResponseCodeEnum.WRONG_OR_EMPTY_PARAM);
+        }
 
         return ResponseVo.buildSuccessInstance(apiService.getShareInfo(param));
     }
@@ -35,7 +37,9 @@ public class OpenApi {
     @RequestMapping(value = "/saveShareInfo", method = RequestMethod.POST)
     public ResponseVo<String> saveShareInfo(@RequestBody ShareInfoRequest param) {
         if(param == null || param.getUserId() == null)
+        {
             throw new BusinessException(ResponseCodeEnum.WRONG_OR_EMPTY_PARAM);
+        }
         apiService.saveProfile(param);
         return ResponseVo.buildSuccessInstance(null);
     }

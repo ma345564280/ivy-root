@@ -40,7 +40,7 @@ public enum CompanyTypeEnum {
     public static CompanyTypeEnum getStatus(Integer code) {
         if (code != null) {
             for (CompanyTypeEnum element : CompanyTypeEnum.values()) {
-                if (element.getCode() == code) {
+                if (element.getCode().equals(code)) {
                     return element;
                 }
             }
@@ -51,7 +51,7 @@ public enum CompanyTypeEnum {
     public static String getDescription(Integer code) {
         if (code != null) {
             for (CompanyTypeEnum element : values()) {
-                if (element.getCode() == code) {
+                if (element.getCode().equals(code)) {
                     return element.getDescription();
                 }
             }

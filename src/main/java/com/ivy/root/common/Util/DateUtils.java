@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtils {
-    public static Long oneDayMilli = 24 * 60 * 60 * 1000l;
+    public static Long oneDayMilli = 24 * 60 * 60 * 1000L;
 
     public static Date getYearMonthDayDate(Date date) throws ParseException {
 

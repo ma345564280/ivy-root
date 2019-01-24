@@ -38,7 +38,7 @@ public enum DesignPictureTypeEnum {
     public static DesignPictureTypeEnum getStatus(Byte code) {
         if (code != null) {
             for (DesignPictureTypeEnum element : DesignPictureTypeEnum.values()) {
-                if (element.getCode() == code) {
+                if (element.getCode().equals(code)) {
                     return element;
                 }
             }
@@ -49,7 +49,7 @@ public enum DesignPictureTypeEnum {
     public static String getDescription(Byte code) {
         if (code != null) {
             for (DesignPictureTypeEnum element : values()) {
-                if (element.getCode() == code) {
+                if (element.getCode().equals(code)) {
                     return element.getDescription();
                 }
             }

@@ -18,7 +18,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public StatisticVo queryDesignerOrdersOverView(Long designerId , Integer days) throws ParseException, NoSuchFieldException, IllegalAccessException {
-        if(designerId == null) return null;
+        if(designerId == null) {
+            return null;
+        }
 
         Long totalOrders = orderMapper.counterAllOrders(designerId);
         List<Order> ordersInDays = orderMapper.statisticOrdersByDay(designerId, days);

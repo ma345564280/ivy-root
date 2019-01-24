@@ -25,7 +25,9 @@ public class DaySumStatisticVo {
     }
 
     public  static <T> List<DaySumStatisticVo> getInstance(Class clazz, String dateDimension, Integer diffRange, List<T> source, String datePattern, Integer dateUnit) throws NoSuchFieldException, ParseException, IllegalAccessException{
-        if(clazz == null) return null;
+        if(clazz == null) {
+            return null;
+        }
 
         Field field = clazz.getDeclaredField(dateDimension);
         field.setAccessible(true);

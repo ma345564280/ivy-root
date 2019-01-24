@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DesignServiceImp implements DesignService {
+public class DesignServiceImpl implements DesignService {
 
     @Autowired
     DesignMapper designMapper;
@@ -39,7 +39,9 @@ public class DesignServiceImp implements DesignService {
     @Override
     @Transactional
     public String saveDesign(SaveDesignRequest param) {
-        if(param == null) throw new BusinessException(ResponseCodeEnum.WRONG_OR_EMPTY_PARAM);
+        if(param == null) {
+            throw new BusinessException(ResponseCodeEnum.WRONG_OR_EMPTY_PARAM);
+        }
         Design design = new Design(param);
         Integer countSave = designMapper.saveDesign(design);
 

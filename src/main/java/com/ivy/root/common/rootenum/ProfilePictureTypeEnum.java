@@ -38,7 +38,7 @@ public enum ProfilePictureTypeEnum {
     public static ProfilePictureTypeEnum getStatus(Byte code) {
         if (code != null) {
             for (ProfilePictureTypeEnum element : ProfilePictureTypeEnum.values()) {
-                if (element.getCode() == code) {
+                if (element.getCode().equals(code)) {
                     return element;
                 }
             }
@@ -49,7 +49,7 @@ public enum ProfilePictureTypeEnum {
     public static String getDescription(Byte code) {
         if (code != null) {
             for (ProfilePictureTypeEnum element : values()) {
-                if (element.getCode() == code) {
+                if (element.getCode().equals(code)) {
                     return element.getDescription();
                 }
             }

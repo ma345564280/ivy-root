@@ -40,7 +40,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserAuthority> queryAuthoritiesByCondition(List<UserRoleDto> userRoleDtos) {
-        if(userRoleDtos == null || userRoleDtos.size() == 0) return null;
+        if(userRoleDtos == null || userRoleDtos.size() == 0) {
+            return null;
+        }
         List<Long> roleIds = userRoleDtos.stream().map(UserRoleDto::getRoleId).collect(Collectors.toList());
         Map paramMap = new HashMap();
         paramMap.put("roleIds", roleIds);

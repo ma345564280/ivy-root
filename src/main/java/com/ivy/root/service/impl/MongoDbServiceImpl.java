@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class MongoDbServiceImp implements MongoDbService {
+public class MongoDbServiceImpl implements MongoDbService {
     private static Map<String, String> imageContentType = new HashMap<>();
     private static final Logger logger = LoggerFactory.getLogger(DesignsController.class);
     static {
@@ -56,6 +56,8 @@ public class MongoDbServiceImp implements MongoDbService {
     @Autowired
     private GridFSBucket gridFSBucket;
 
+
+    @Override
     public List<String> savePicture(MultipartHttpServletRequest request) throws IOException {
 
         List<String> fileNames = new ArrayList<>();
@@ -63,8 +65,9 @@ public class MongoDbServiceImp implements MongoDbService {
         MultiValueMap<String, MultipartFile> map1 = request.getMultiFileMap();
         List<MultipartFile> multipartFiles = map1.get("file");
 
-        if (multipartFiles == null || multipartFiles.size() == 0)
+        if (multipartFiles == null || multipartFiles.size() == 0) {
             throw new BusinessException(ResponseCodeEnum.NONE_PICTURE_RECEIVED);
+        }
 
         for (MultipartFile multipartFile : multipartFiles) {
             String contentType = "";
@@ -84,6 +87,8 @@ public class MongoDbServiceImp implements MongoDbService {
         return fileNames;
     }
 
+
+    @Override
     public void getPicture(String fileId, HttpServletResponse response) throws IOException {
         getPicture(fileId, response, 1f);
     }
@@ -95,6 +100,8 @@ public class MongoDbServiceImp implements MongoDbService {
      * @throws Exception
      * @author
      */
+
+    @Override
     public void removeFile(String fileId) {
         gridFsTemplate.delete(Query.query(Criteria.where("_id").is(fileId)));
     }
@@ -117,8 +124,11 @@ public class MongoDbServiceImp implements MongoDbService {
 
     @Override
     public String saveCropPicture(CropImage request) throws IOException {
-        if (request.getFile() == null) //图像数据为空
+        //图像数据为空
+        if (request.getFile() == null)
+        {
             return null;
+        }
         int index = request.getFile().indexOf("base64,");
         byte[] bytes = new BASE64Decoder().decodeBuffer(request.getFile().substring(index + 7));
         //转化为输入流

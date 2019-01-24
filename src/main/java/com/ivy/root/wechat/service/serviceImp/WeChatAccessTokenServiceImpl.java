@@ -30,8 +30,10 @@ public class WeChatAccessTokenServiceImpl implements WeChatAccessTokenService {
     public WeChatAccessToken getAccessToken() throws IOException {
         WeChatAccessToken accessToken = tokenMapper.getNewestAccessToken();
 
-        if(accessToken != null && accessToken.getExpireDate().getTime() < new Date().getTime())
+        if(accessToken != null && accessToken.getExpireDate().getTime() < System.currentTimeMillis())
+        {
             return accessToken;
+        }
 
         String url = urlGetAccessToken.replace("APPID", appId).replace("APPSECRET", appSecret);
         JSONObject jsonObject = doGet(url);

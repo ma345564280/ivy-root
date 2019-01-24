@@ -68,3 +68,9 @@ target/classes/com/ivy/root/common/request/SaveDesignRequest.class
 target/classes/com/ivy/root/common/request/RegisterRequest.class
 target/classes/application.yml
 target/classes/com/ivy/root/dto/CropImage.class
+target/classes/com/ivy/root/service/impl/MongoDbServiceImpl.class
+target/classes/com/ivy/root/service/impl/DesignServiceImpl.class
+target/classes/com/ivy/root/domain/Appointment.class
+target/classes/mapper/AppointmentMapper.xml
+target/classes/mapper/UserMapper.xml
+target/classes/com/ivy/root/dao/AppointmentMapper.class

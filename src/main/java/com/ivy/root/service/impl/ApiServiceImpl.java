@@ -24,6 +24,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * @author matao
+ */
 @Service
 public class ApiServiceImpl implements ApiService {
     private static final Logger logger = LoggerFactory.getLogger(ApiServiceImpl.class);
@@ -53,12 +56,12 @@ public class ApiServiceImpl implements ApiService {
     private List<DesignVo> getDesignVo(Long userId) {
         List<DesignVo> designVos = new ArrayList<>();
 
-        Map<String, Object> param = new HashMap<>();
+        Map<String, Object> param = new HashMap<>(16);
         param.put("userId", userId);
         List<Design> designs = designMapper.queryDesignForShare(param);
         if(designs != null && designs.size() > 0) {
             Set<Long> designIds = designs.stream().map(Design::getId).collect(Collectors.toSet());
-            Map<String, Object> paramForImg = new HashMap<>();
+            Map<String, Object> paramForImg = new HashMap<>(5);
             paramForImg.put("designIds", designIds);
             List<DesignImg> designImgs = designImgMapper.queryDesignImgsByConditions(paramForImg);
 
@@ -79,7 +82,7 @@ public class ApiServiceImpl implements ApiService {
 
     private ProfileVo getProfileVo(Long userId) {
         Profile profile = profileMapper.queryProfileByUserId(userId, 1);
-        Map<String, Object> queryProfileImgsParam = new HashMap<>();
+        Map<String, Object> queryProfileImgsParam = new HashMap<>(4);
         queryProfileImgsParam.put("userId", userId);
         queryProfileImgsParam.put("profileId", profile.getId());
         List<ProfileImg> profileImgsAll = profileImgMapper.queryProfileImgsForShare(queryProfileImgsParam);
@@ -90,7 +93,7 @@ public class ApiServiceImpl implements ApiService {
 
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void saveProfile(ShareInfoRequest request) {
         Profile profile = getProfileByShareInfoRequest(request);
         Long userId = request.getUserId();
