@@ -1,6 +1,7 @@
 package com.ivy.root.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ivy.root.dto.PictureDto;
 
 import java.util.Date;
 
@@ -78,9 +79,10 @@ public class DesignImg {
     public DesignImg() {
     }
 
-    public DesignImg(Long designId, String imgUrl, Byte imgType) {
+    public DesignImg(Long designId, PictureDto img, Byte imgType) {
         this.designId = designId;
-        this.imgUrl = imgUrl;
+        this.imgUrl = img.getFileUrl();
+        this.description = img.getDescription();
         this.imgType = imgType;
         this.createTime = new Date();
     }

@@ -2,6 +2,7 @@ package com.ivy.root.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ivy.root.dto.PictureDto;
 import com.ivy.root.service.DesignService;
 import com.ivy.root.common.exception.BusinessException;
 import com.ivy.root.common.request.DesignsParamRequest;
@@ -37,29 +38,31 @@ public class DesignServiceImpl implements DesignService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public String saveDesign(SaveDesignRequest param) {
-        if(param == null) {
+        if(param == null || param.getDesignerId() == null) {
             throw new BusinessException(ResponseCodeEnum.WRONG_OR_EMPTY_PARAM);
         }
         Design design = new Design(param);
         Integer countSave = designMapper.saveDesign(design);
 
         Long designId = design.getId();
-        List<String> coverPicture = param.getCoverPictureUrl();
-        List<String> normalPicture = param.getNormalPictureUrls();
+        List<PictureDto> coverPicture = param.getCoverPictureUrl();
+        List<PictureDto> normalPicture = param.getNormalPictureUrls();
 
         List<DesignImg> designImgs = new ArrayList<>();
         if(coverPicture != null && coverPicture.size() > 0) {
-            for(String pic : coverPicture) {
+            for(PictureDto pic : coverPicture) {
                 DesignImg var = new DesignImg(designId, pic, DesignPictureTypeEnum.COVER_PICTURE.getCode());
                 designImgs.add(var);
             }
         }
 
         if(normalPicture != null && normalPicture.size() > 0) {
-            for(String pic : normalPicture) {
+            for(PictureDto pic : normalPicture) {
                 DesignImg var = new DesignImg(designId, pic, DesignPictureTypeEnum.NORMAL_PICTURE.getCode());
+
+                //新增修改
                 designImgs.add(var);
             }
         }

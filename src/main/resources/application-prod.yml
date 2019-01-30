@@ -23,7 +23,7 @@ spring:
     url: jdbc:mysql://localhost:3306/ivy?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
 
     username: root
-    password: paTh9et6ic
+    password: Boya@2019
     driverClassName: com.mysql.cj.jdbc.Driver
 #连接池的配置信息
     initialSize: 5
@@ -69,6 +69,6 @@ img:
   proportion: 0.2f
 
 logging:
-  path: /log
+  path: /boya/ivy-root/log
   level:
-    com.ivy.root: debug
+    com.ivy.root: info

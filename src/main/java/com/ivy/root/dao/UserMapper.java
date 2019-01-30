@@ -28,4 +28,6 @@ public interface UserMapper {
     List<UserRoleDto> queryUserRoleByCondition(HashMap map);
 
     List<UserAuthority> queryAuthoritiesByCondition(Map paramMap);
+
+    int countAccount(Map<String, Object> paramC);
 }

@@ -10,9 +10,12 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="TINYINT" />
+    <result column="is_negotiable" property="isNegotiable" jdbcType="BIT" />
+    <result column="mini_charge" property="miniCharge" jdbcType="INTEGER" />
+    <result column="max_charge" property="maxCharge" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, designer_id, name, brief, type, create_time, update_time, del_flag
+    id, designer_id, name, brief, type, create_time, update_time, del_flag, max_charge, mini_charge, is_negotiable
   </sql>
   
   <select id="queryDesignsByCondition" parameterType="com.ivy.root.common.request.DesignsParamRequest"
@@ -28,9 +31,9 @@
   <insert id="saveDesign" parameterType="com.ivy.root.domain.Design" useGeneratedKeys="true" keyProperty="id">
     insert into
       t_design
-      (designer_id, name, brief, type, create_time)
+      (designer_id, name, brief, type, create_time, max_charge, mini_charge, is_negotiable)
     values
-      (#{designerId}, #{name}, #{brief}, #{type}, #{createTime})
+      (#{designerId}, #{name}, #{brief}, #{type}, #{createTime}, #{maxCharge}, #{miniCharge}, #{isNegotiable})
   </insert>
 
   <select id="queryDesignForShare" parameterType="map" resultMap="BaseResultMap">

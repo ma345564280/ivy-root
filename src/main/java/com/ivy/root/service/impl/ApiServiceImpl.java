@@ -1,5 +1,6 @@
 package com.ivy.root.service.impl;
 
+import com.ivy.root.dto.PictureDto;
 import com.ivy.root.service.ApiService;
 import com.ivy.root.common.request.ShareInfoRequest;
 import com.ivy.root.common.rootenum.DesignPictureTypeEnum;
@@ -106,16 +107,17 @@ public class ApiServiceImpl implements ApiService {
 
     private List<ProfileImg> getProfileImgsByShareInfoRequest(ShareInfoRequest request, Long profileId) {
         Long userId = request.getUserId();
-        List<String> sharePageBackground = request.getSharePageBackground();
-        List<String> enterpriseImgs = request.getEnterpriseImgs();
+        List<PictureDto> sharePageBackground = request.getSharePageBackground();
+        List<PictureDto> enterpriseImgs = request.getEnterpriseImgs();
 
         List<ProfileImg> profileImgs = new ArrayList<>();
 
         if(sharePageBackground != null && sharePageBackground.size() > 0) {
-            for(String var : sharePageBackground) {
+            for(PictureDto var : sharePageBackground) {
                 ProfileImg profileImg = new ProfileImg();
                 profileImg.setUserId(userId);
-                profileImg.setImgUrl(var);
+                profileImg.setImgUrl(var.getFileUrl());
+                profileImg.setDescription(var.getDescription());
                 profileImg.setImgType(ProfilePictureTypeEnum.COMPANY_SHARE_BACKGROUND_PICTURE.getCode());
                 profileImg.setCreateTime(new Date());
                 profileImg.setProfileId(profileId);
@@ -125,10 +127,11 @@ public class ApiServiceImpl implements ApiService {
         }
 
         if(enterpriseImgs != null && enterpriseImgs.size() > 0) {
-            for(String var : enterpriseImgs) {
+            for(PictureDto var : enterpriseImgs) {
                 ProfileImg profileImg = new ProfileImg();
                 profileImg.setUserId(userId);
-                profileImg.setImgUrl(var);
+                profileImg.setImgUrl(var.getFileUrl());
+                profileImg.setDescription(var.getDescription());
                 profileImg.setImgType(ProfilePictureTypeEnum.COMPANY_PICTURE.getCode());
                 profileImg.setCreateTime(new Date());
                 profileImg.setProfileId(profileId);

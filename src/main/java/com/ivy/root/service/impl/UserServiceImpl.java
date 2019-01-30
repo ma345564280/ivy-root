@@ -1,5 +1,8 @@
 package com.ivy.root.service.impl;
 
+import com.ivy.root.common.exception.BusinessException;
+import com.ivy.root.dao.UserRoleMapper;
+import com.ivy.root.domain.UserRole;
 import com.ivy.root.service.UserService;
 import com.ivy.root.common.request.LoginRequest;
 import com.ivy.root.common.request.RegisterRequest;
@@ -21,6 +24,9 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    UserRoleMapper userRoleMapper;
 
     @Override
     public User getOneUserByCondition(LoginRequest param) {
@@ -51,11 +57,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean register(RegisterRequest param) {
+        Map<String, Object> paramC = new HashMap<>(4);
+        paramC.put("username", param.getUserName());
+        int count = userMapper.countAccount(paramC);
+
+        if(count != 0) {
+            throw new BusinessException(60001, "该账户已存在。");
+        }
+
         User user = new User();
         BeanUtils.copyProperties(param, user);
-        int count = userMapper.insertSelective(user);
+        userMapper.insertSelective(user);
+        UserRole userRole = new UserRole(user.getId(), 2L);
+        userRoleMapper.insertSelective(userRole);
         return true;
     }
 }

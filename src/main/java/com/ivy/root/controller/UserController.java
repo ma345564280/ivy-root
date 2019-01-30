@@ -60,16 +60,14 @@ public class UserController {
 
     @ApiOperation(value = "用户注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseVo<String> register(@RequestBody RegisterRequest param) {
+    public ResponseVo<Boolean> register(@RequestBody RegisterRequest param) {
         if(!validateRegisterInfo(param)) {
             return ResponseVo.buildFailInstance(ResponseCodeEnum.WRONG_OR_EMPTY_PARAM);
         }
 
-
-
         boolean ret = userService.register(param);
 
-        return null;
+        return ResponseVo.buildSuccessInstance(ret);
     }
 
     private boolean validateRegisterInfo(RegisterRequest param) {
@@ -80,9 +78,6 @@ public class UserController {
         if(StringUtils.isEmpty(param.getUserName()) || StringUtils.isEmpty(param.getPassword())) {
             return false;
         }
-
-
-//        if(param.getEmail())
         return true;
     }
 

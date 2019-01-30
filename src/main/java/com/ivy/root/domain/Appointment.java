@@ -30,4 +30,6 @@ public class Appointment {
 
     private String address;
 
+    private String projectTypeDesc;
+
 }

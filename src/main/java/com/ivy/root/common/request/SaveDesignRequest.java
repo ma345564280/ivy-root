@@ -13,9 +13,12 @@ public class SaveDesignRequest extends BaseRequest {
     private List<String> residence;
     private Byte type;
     private String priceRange;
+    private Integer miniCharge;
+    private Integer maxCharge;
+    private boolean isNegotiable;
     private String designStyle;
-    private List<String>  coverPictureUrl;
-    private List<String> normalPictureUrls;
+    private List<PictureDto>  coverPictureUrl;
+    private List<PictureDto> normalPictureUrls;
     private Long designerId;
     private String name;
 

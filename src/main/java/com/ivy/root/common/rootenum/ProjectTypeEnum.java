@@ -3,12 +3,13 @@ package com.ivy.root.common.rootenum;
  * @author gaoxin
  *
  */
-public enum CompanyTypeEnum {
+public enum ProjectTypeEnum {
 
-    DESIGN_COMPANY(1, "设计公司"),
-    DECORATE_COMPANY(2, "装修公司"),
-    DESIGN_STUDIO(3, "设计工作室"),
-    DRAWING_COMPANY(4, "效果图公司"),
+    MODEL_ROOM(1, "样板间"),
+    HOUSE(2, "家居别墅"),
+    DINNER(3, "酒店餐饮"),
+    GUEST_HOUSE(4, "民宿"),
+    OTHERS(5, "其他"),
 
     ;
 
@@ -32,14 +33,14 @@ public enum CompanyTypeEnum {
         this.description = description;
     }
 
-    CompanyTypeEnum(Integer code, String description) {
+    ProjectTypeEnum(Integer code, String description) {
         this.code = code;
         this.description = description;
     }
 
-    public static CompanyTypeEnum getStatus(Integer code) {
+    public static ProjectTypeEnum getStatus(Integer code) {
         if (code != null) {
-            for (CompanyTypeEnum element : CompanyTypeEnum.values()) {
+            for (ProjectTypeEnum element : ProjectTypeEnum.values()) {
                 if (element.getCode().equals(code)) {
                     return element;
                 }
@@ -50,7 +51,7 @@ public enum CompanyTypeEnum {
 
     public static String getDescription(Integer code) {
         if (code != null) {
-            for (CompanyTypeEnum element : values()) {
+            for (ProjectTypeEnum element : values()) {
                 if (element.getCode().equals(code)) {
                     return element.getDescription();
                 }

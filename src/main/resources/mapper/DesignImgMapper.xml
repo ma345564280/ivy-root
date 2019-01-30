@@ -13,10 +13,10 @@
     id, design_id, img_url, create_time, del_flag, img_type
   </sql>
  <insert id="saveDesignImgs" parameterType="com.ivy.root.domain.DesignImg">
-    insert into t_design_img (design_id, img_url, img_type, create_time)
+    insert into t_design_img (design_id, img_url, img_type, create_time, description)
     values
    <foreach collection="list" item="item" separator=",">
-     (#{item.designId}, #{item.imgUrl}, #{item.imgType}, #{item.createTime})
+     (#{item.designId}, #{item.imgUrl}, #{item.imgType}, #{item.createTime}, #{item.description})
    </foreach>
  </insert>
     

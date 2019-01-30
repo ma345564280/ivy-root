@@ -161,4 +161,16 @@
       address = #{address,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="queryAppointmentByCondition" parameterType="com.ivy.root.common.request.AppointmentRequest" resultMap="BaseResultMap">
+    select * from t_appointment
+    where 1 = 1
+    <if test="designerId != null">
+      and designer_id = #{designerId}
+    </if>
+    <if test="delFlag != null">
+      and del_flag = #{delFlag}
+    </if>
+  </select>
+
 </mapper>
