@@ -126,6 +126,18 @@ public class ApiServiceImpl implements ApiService {
             }
         }
 
+
+
+        System.out.println("Test");
+        System.out.println("Test");
+        System.out.println("Test");
+        System.out.println("Test");
+        System.out.println("Test");
+        System.out.println("Test");
+        System.out.println("Test");
+        System.out.println("Test");
+        System.out.println("Test");
+        System.out.println("Test");
         if(enterpriseImgs != null && enterpriseImgs.size() > 0) {
             for(PictureDto var : enterpriseImgs) {
                 ProfileImg profileImg = new ProfileImg();
