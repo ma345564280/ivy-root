@@ -30,4 +30,6 @@ public interface UserMapper {
     List<UserAuthority> queryAuthoritiesByCondition(Map paramMap);
 
     int countAccount(Map<String, Object> paramC);
+
+    User selectByCondtion(Map<String, Object> param);
 }

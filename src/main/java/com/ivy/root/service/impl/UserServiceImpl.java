@@ -10,6 +10,7 @@ import com.ivy.root.dao.UserMapper;
 import com.ivy.root.domain.User;
 import com.ivy.root.domain.UserAuthority;
 import com.ivy.root.dto.UserRoleDto;
+import com.ivy.root.vo.CurrentUserVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,5 +74,18 @@ public class UserServiceImpl implements UserService {
         UserRole userRole = new UserRole(user.getId(), 2L);
         userRoleMapper.insertSelective(userRole);
         return true;
+    }
+
+    @Override
+    public CurrentUserVo queryCurrentUser(Long userId) {
+        Map<String, Object> param = new HashMap<>(4);
+
+        param.put("userId", userId);
+        User user = userMapper.selectByCondtion(param);
+
+        CurrentUserVo currentUserVo = new CurrentUserVo(user);
+
+
+        return null;
     }
 }

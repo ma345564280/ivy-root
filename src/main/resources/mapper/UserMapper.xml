@@ -17,10 +17,12 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="open_id" property="openId" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="signature" property="signature" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, account_status, user_name, password, mobile, gender, pic_url, type, role, address, 
-    del_flag, create_time, update_time, open_id, email
+    del_flag, create_time, update_time, open_id, email, nick_name, signature
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -94,6 +96,12 @@
       <if test="email != null" >
         email,
       </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="signature != null" >
+        signature,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -140,6 +148,13 @@
       </if>
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+
+      <if test="signature != null" >
+        #{signature,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +203,12 @@
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
       </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -207,6 +228,7 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       open_id = #{openId,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR}
+      nick_name = #{nickName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 
@@ -275,6 +297,14 @@
     where 1 = 1
     <if test="username != null">
       and user_name =#{username}
+    </if>
+  </select>
+  
+  <select id="selectByCondition" parameterType="map" resultMap="BaseResultMap">
+    select * from t_user
+    where 1=1
+    <if test="userId != null">
+      and id = #{userId}
     </if>
   </select>
 

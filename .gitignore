@@ -145,3 +145,4 @@ target/classes/com/ivy/root/common/Util/ImageUtil.class
 target/classes/com/ivy/root/common/Util/DateUtils.class
 target/classes/com/ivy/root/IvyRootApplication.class
 .idea/workspace.xml
+target/classes/com/ivy/root/vo/CurrentUserVo.class

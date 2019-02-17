@@ -38,4 +38,8 @@ public class User {
 
     private String email;
 
+    private String nickName;
+
+    private String signature;
+
 }

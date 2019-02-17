@@ -9,6 +9,7 @@ import com.ivy.root.domain.User;
 import com.ivy.root.domain.UserAuthority;
 import com.ivy.root.dto.UserAuthorityDto;
 import com.ivy.root.dto.UserRoleDto;
+import com.ivy.root.vo.CurrentUserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +80,18 @@ public class UserController {
             return false;
         }
         return true;
+    }
+
+    @ApiOperation(value = "获取当前用户")
+    @RequestMapping(value = "/queryCurrent", method = RequestMethod.POST)
+    public ResponseVo<CurrentUserVo> queryCurrent(@RequestBody Long userId) {
+        if(userId == null) {
+            return ResponseVo.buildFailInstance(ResponseCodeEnum.WRONG_OR_EMPTY_PARAM);
+        }
+
+        CurrentUserVo ret = userService.queryCurrentUser(userId);
+
+        return ResponseVo.buildSuccessInstance(ret);
     }
 
 }
