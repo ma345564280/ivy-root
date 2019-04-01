@@ -1,8 +1,17 @@
 package com.ivy.root.common.rootenum;
+
+
 /**
- * @author gaoxin
- *
- */
+* @Description:    公司类型枚举
+* @Author:         matao
+* @CreateDate:     2019/3/11 14:10
+
+* @UpdateUser:     matao
+* @UpdateDate:     2019/3/11 14:10
+* @UpdateRemark:   修改内容
+
+* @Version:        1.0
+*/
 public enum CompanyTypeEnum {
 
     DESIGN_COMPANY(1, "设计公司"),

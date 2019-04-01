@@ -8,6 +8,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
+
+/**
+* @Description:    全局异常捕捉
+* @Author:         matao
+* @CreateDate:     2019/3/11 14:14
+
+* @UpdateUser:     matao
+* @UpdateDate:     2019/3/11 14:14
+* @UpdateRemark:   修改内容
+
+* @Version:        1.0
+*/
 @ControllerAdvice
 public class ControllerExceptionHandler {
 

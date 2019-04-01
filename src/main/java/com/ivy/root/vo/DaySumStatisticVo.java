@@ -1,6 +1,8 @@
 package com.ivy.root.vo;
 
-import com.ivy.root.common.Util.DateUtils;
+import com.ivy.root.common.util.DateUtils;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,10 +11,25 @@ import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+* @Description:    日期-数据统计通用返回类
+* @Author:         matao
+* @CreateDate:     2019/2/26 17:16
+
+* @UpdateUser:     matao
+* @UpdateDate:     2019/2/26 17:16
+* @UpdateRemark:   修改内容
+
+* @Version:        1.0
+*/
+
 @Getter
 @Setter
+@ApiModel(description = "日期-数据统计通用返回类")
 public class DaySumStatisticVo {
+    @ApiModelProperty(value = "日期数据")
     private Integer sum;
+    @ApiModelProperty(value = "日期")
     private String date;
 
     private DaySumStatisticVo() {

@@ -1,13 +1,18 @@
 package com.ivy.root.common.rootenum;
 /**
- * @author gaoxin
- *
- */
-public enum AppointmentStatusEnum {
+* @Description:    预约状态枚举
+* @Author:          matao
+* @CreateDate:     2019/3/11 14:09
 
+* @UpdateUser:     matao
+* @UpdateDate:     2019/3/11 14:09
+* @UpdateRemark:   修改内容
+
+* @Version:        1.0
+*/
+public enum AppointmentStatusEnum {
     DESIGN_COMPANY(0, "客户预约"),
     DECORATE_COMPANY(1, "设计师接单"),
-
     ;
 
     private Integer code;

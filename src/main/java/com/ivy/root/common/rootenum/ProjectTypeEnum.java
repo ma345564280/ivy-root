@@ -1,8 +1,16 @@
 package com.ivy.root.common.rootenum;
+
 /**
- * @author gaoxin
- *
- */
+* @Description:    设计预约中项目类型枚举
+* @Author:         matao
+* @CreateDate:     2019/3/11 14:11
+
+* @UpdateUser:     matao
+* @UpdateDate:     2019/3/11 14:11
+* @UpdateRemark:   修改内容
+
+* @Version:        1.0
+*/
 public enum ProjectTypeEnum {
 
     MODEL_ROOM(1, "样板间"),

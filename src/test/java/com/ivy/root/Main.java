@@ -1,6 +1,6 @@
 package com.ivy.root;
 
-import com.ivy.root.common.Util.DateUtils;
+import com.ivy.root.common.util.DateUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

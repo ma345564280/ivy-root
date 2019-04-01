@@ -1,10 +1,21 @@
-package com.ivy.root.common.Util;
+package com.ivy.root.common.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+* @Description:    日期相关工具方法
+* @Author:         matao
+* @CreateDate:     2019/3/11 14:13
+
+* @UpdateUser:     matao
+* @UpdateDate:     2019/3/11 14:13
+* @UpdateRemark:   修改内容
+
+* @Version:        1.0
+*/
 public class DateUtils {
     public static Long oneDayMilli = 24 * 60 * 60 * 1000L;
 

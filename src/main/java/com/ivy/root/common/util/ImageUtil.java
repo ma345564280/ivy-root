@@ -1,10 +1,22 @@
-package com.ivy.root.common.Util;
+package com.ivy.root.common.util;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.UUID;
 
+
+/**
+* @Description:   图片保存相关工具方法
+* @Author:         matao
+* @CreateDate:     2019/3/11 14:13
+
+* @UpdateUser:     matao
+* @UpdateDate:     2019/3/11 14:13
+* @UpdateRemark:   修改内容
+
+* @Version:        1.0
+*/
 public class ImageUtil {
     /**
      * 保存文件，直接以multipartFile形式
